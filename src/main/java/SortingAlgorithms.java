@@ -132,8 +132,9 @@ public class SortingAlgorithms {
     }
 
 
+
     //  Test time complexity of each sorting algorithm  
-    public static void testTimeComplexity(int size) {
+    public static void testTimeComplexity(int size, String arrayType) {
         int[] arr; // Declare the array
         long startTime, endTime; // Declare timing variables 
 
@@ -141,61 +142,31 @@ public class SortingAlgorithms {
         // --------- Testing Random Sorted Arrays ---------
 
         // Initialize array
-        arr = createArray("random", size);
+        arr = createArray(arrayType, size);
 
         // Measure time taken by Bubble Sort
         startTime = System.nanoTime();
         bubbleSort(arr);
         endTime = System.nanoTime();
-        System.out.println("Bubble Sort Time for Random array: " + (endTime - startTime) + " ns");
+        System.out.println("   Bubble Sort Time for " + arrayType + " array of " + size + ": " + (endTime - startTime) + " ns");
 
         // Reset the array for next test
-        arr = createArray("random", size);
+        arr = createArray(arrayType, size);
 
         // Measure time taken by Selection Sort
         startTime = System.nanoTime();
         selectionSort(arr);
         endTime = System.nanoTime();
-        System.out.println("Selection Sort Time for Random array: " + (endTime - startTime) + " ns");
+        System.out.println("Selection Sort Time for " + arrayType + " array of " + size + ": " + (endTime - startTime) + " ns");
 
         // Reset the array for next test
-        arr = createArray("random", size);
+        arr = createArray(arrayType, size);
 
         // Measure time taken by Insertion Sort
         startTime = System.nanoTime();
         insertionSort(arr);
         endTime = System.nanoTime();
-        System.out.println("Insertion Sort Time for Random array: " + (endTime - startTime) + " ns");
-
-
-        // -------- Testing Sorted Arrays ---------
-
-        // Initialize array
-        arr = createArray("sorted", size);
-
-        // Measure time taken by Bubble Sort
-        startTime = System.nanoTime();
-        bubbleSort(arr);
-        endTime = System.nanoTime();
-        System.out.println("Bubble Sort Time for Sorted array: " + (endTime - startTime) + " ns");
-
-        // Reset the array for next test
-        arr = createArray("sorted", size);
-
-        // Measure time taken by Selection Sort
-        startTime = System.nanoTime();
-        selectionSort(arr);
-        endTime = System.nanoTime();
-        System.out.println("Selection Sort Time for Sorted array: " + (endTime - startTime) + " ns");
-
-        // Reset the array for next test
-        arr = createArray("sorted", size);
-
-        // Measure time taken by Insertion Sort
-        startTime = System.nanoTime();
-        insertionSort(arr);
-        endTime = System.nanoTime();
-        System.out.println("Insertion Sort Time for Sorted array: " + (endTime - startTime) + " ns");
+        System.out.println("Insertion Sort Time for " + arrayType + " array of " + size + ": " + (endTime - startTime) + " ns");
     }
 
 
@@ -205,12 +176,31 @@ public class SortingAlgorithms {
         System.out.println("Testing sorting algorithms functionality:");
         testFunctionality();
 
-        // Setting the size of the array for time complexity test
-        int size = 10000; // You can change this value to test with different sizes
-        System.out.println("\nTesting time complexity of sorting algorithms with array size: " + size);
-        testTimeComplexity(size);
+        int size = 0; // Initialize size variable
+        String arrayType = ""; // Initialize arrayType variable
 
-        
+        // Setting the size of the array for time complexity test
+        size = 100; // You can change this value to test with different sizes
+        arrayType = "random"; // You can change this to "sorted" or "random" to test different types of arrays
+        System.out.println("\nTesting time complexity of sorting algorithms with random array size: " + size);
+        testTimeComplexity(size, arrayType);
+
+        // You can also test with sorted arrays
+        arrayType = "sorted"; // Change to "sorted" for sorted arrays
+        System.out.println("\nTesting time complexity of sorting algorithms with sorted array size: " + size);
+        testTimeComplexity(size, arrayType);
+
+
+        // You can also test with larger arrays
+        size = 5000; // Change this value to test with larger arrays
+        arrayType = "random"; // Change to "sorted" for sorted arrays
+        System.out.println("\nTesting time complexity of sorting algorithms with random array size: " + size);
+        testTimeComplexity(size, arrayType);
+        // You can also test with sorted arrays
+        arrayType = "sorted"; // Change to "sorted" for sorted arrays
+        System.out.println("\nTesting time complexity of sorting algorithms with sorted array size: " + size);
+        testTimeComplexity(size, arrayType);
+
     }
 
 }
